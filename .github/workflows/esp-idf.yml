@@ -4,9 +4,15 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: espressif/idf:v5.5.6
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: espressif/build-esp-idf-projects-action@v1
-        with:
-          target: esp32s3
+    - name: Checkout repo
+      uses: actions/checkout@v7
+      with:
+        submodules: 'recursive'
+    - name: esp-idf build
+      uses: espressif/esp-idf-ci-action@v1
+      with:
+        esp_idf_version: v5.5.6
+        target: esp32s2
+        path: '.'
