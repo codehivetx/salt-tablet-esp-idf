@@ -1,0 +1,12 @@
+name: Build ESP-IDF Projects
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: espressif/idf:v5.5.6
+    steps:
+      - uses: actions/checkout@v7
+      - uses: espressif/build-esp-idf-projects-action@v1
+        with:
+          paths: "examples/hello_world"
