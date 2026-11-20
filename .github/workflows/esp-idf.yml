@@ -9,4 +9,4 @@ jobs:
       - uses: actions/checkout@v7
       - uses: espressif/build-esp-idf-projects-action@v1
         with:
-          paths: "examples/hello_world"
+          paths: "."
