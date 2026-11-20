@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     container: espressif/idf:v5.5.6
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
       - uses: espressif/build-esp-idf-projects-action@v1
         with:
-          paths: "."
+          target: esp32s3
