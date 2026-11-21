@@ -54,7 +54,22 @@ void app_main(void)
 
     ESP_LOGI(TAG, "Starting LVGL widgets demo");
     if (esp_lv_adapter_lock(-1) == ESP_OK) {
+#if 1
         lv_demo_widgets();
+#else
+
+        /* Create widgets */
+        lv_obj_t * label = lv_label_create(lv_screen_active());
+        lv_label_set_text(label, "Hello LVGL!");
+
+
+        /* Make LVGL periodically execute its tasks */
+        while(1) {
+            /* Provide updates to currently-displayed Widgets here. */
+            lv_timer_handler();
+            my_sleep(5);  /*Wait 5 milliseconds before processing LVGL timer again*/
+        }
+#endif
         esp_lv_adapter_unlock();
     }
 }
