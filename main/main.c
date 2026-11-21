@@ -5,13 +5,13 @@
  */
 
 #include <assert.h>
-#include "my_sleep.hpp"
 #include "esp_log.h"
 #include "esp_lv_adapter.h"
 #include "lv_demos.h"
 #include "waveshare_rgb_lcd_port.h"
+#include "salt_tab_main.hpp"
 
-static const char *TAG = "lvgl8_demo";
+static const char *TAG = "salt_tab";
 
 void app_main(void)
 {
@@ -52,30 +52,10 @@ void app_main(void)
 
     ESP_ERROR_CHECK(esp_lv_adapter_start());
 
-    ESP_LOGI(TAG, "Starting LVGL widgets demo");
+    ESP_LOGI(TAG, "Starting Salt Tab main");
     if (esp_lv_adapter_lock(-1) == ESP_OK) {
-#if 0
-        lv_demo_widgets();
-#else
-        // hello world
-        {
-            lv_obj_t * screen = lv_screen_active();
-            lv_obj_set_style_bg_color(screen, lv_color_hex(0x003a57), 0);
-            lv_obj_set_style_text_color(screen, lv_color_hex(0xffffff), 0);
-            lv_obj_t * label = lv_label_create(screen);
-            lv_obj_set_align(label, LV_ALIGN_CENTER);
-            lv_label_set_text(label, "Welcome to SALT TAB by Code Hive Tx, LLC");
-        }
-
-
-        /* Make LVGL periodically execute its tasks */
-        while(1) {
-            /* Provide updates to currently-displayed Widgets here. */
-            lv_timer_handler();
-
-            // my_sleep(5);  /*Wait 5 milliseconds before processing LVGL timer again*/
-        }
-#endif
+        salt_tab_main();
+        // doesn't normally exit?
         esp_lv_adapter_unlock();
     }
 }
