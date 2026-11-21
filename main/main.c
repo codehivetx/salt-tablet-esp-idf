@@ -1,11 +1,11 @@
 /*
  * SPDX-FileCopyrightText: 2023-2024 Espressif Systems (Shanghai) CO LTD
  *
- * SPDX-License-Identifier: CC0-1.0
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 #include <assert.h>
-
+#include "my_sleep.hpp"
 #include "esp_log.h"
 #include "esp_lv_adapter.h"
 #include "lv_demos.h"
@@ -54,7 +54,7 @@ void app_main(void)
 
     ESP_LOGI(TAG, "Starting LVGL widgets demo");
     if (esp_lv_adapter_lock(-1) == ESP_OK) {
-#if 1
+#if 0
         lv_demo_widgets();
 #else
 
@@ -67,7 +67,8 @@ void app_main(void)
         while(1) {
             /* Provide updates to currently-displayed Widgets here. */
             lv_timer_handler();
-            my_sleep(5);  /*Wait 5 milliseconds before processing LVGL timer again*/
+
+            // my_sleep(5);  /*Wait 5 milliseconds before processing LVGL timer again*/
         }
 #endif
         esp_lv_adapter_unlock();
