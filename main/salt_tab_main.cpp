@@ -3,16 +3,18 @@
 #include "my_sleep.hpp"
 #include "esp_log.h"
 
+static const char *TAG = "salt_tab";
 static bool salt_running = true;
 
 /** callback for the label */
-void my_clicky_event(lv_event_t *e)
+extern "C" void my_clicky_event(lv_event_t *e)
 {
+    (void)e;
     ESP_LOGI(TAG, "Clicky on the label");
 }
 
 /** setup the initial screen */
-void salt_tab_setup()
+void salt_tab_setup(void)
 {
     lv_obj_t *screen = lv_screen_active();
     lv_obj_set_style_bg_color(screen, lv_color_hex(0x003a57), 0);
@@ -27,7 +29,7 @@ void salt_tab_setup()
 }
 
 /** All set, just go */
-void salt_tab_run()
+void salt_tab_run(void)
 {
     /* Make LVGL periodically execute its tasks */
     while (salt_running)
@@ -40,7 +42,7 @@ void salt_tab_run()
 }
 
 /** main entrypoint from main.c */
-void salt_tab_main()
+void salt_tab_main(void)
 {
     salt_tab_setup();
     salt_tab_run();

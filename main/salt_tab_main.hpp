@@ -1,8 +1,14 @@
-#ifndef _SALT_TAB_MAIN
-#define _SALT_TAB_MAIN
+#ifndef SALT_TAB_MAIN_HPP
+#define SALT_TAB_MAIN_HPP
 
-extern void salt_tab_main();
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-static const char *TAG = "salt_tab";
+void salt_tab_main(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
