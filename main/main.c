@@ -11,8 +11,6 @@
 #include "waveshare_rgb_lcd_port.h"
 #include "salt_tab_main.hpp"
 
-static const char *TAG = "salt_tab";
-
 void app_main(void)
 {
     const esp_lv_adapter_rotation_t rotation = ESP_LV_ADAPTER_ROTATE_0;
