@@ -57,10 +57,15 @@ void app_main(void)
 #if 0
         lv_demo_widgets();
 #else
-
-        /* Create widgets */
-        lv_obj_t * label = lv_label_create(lv_screen_active());
-        lv_label_set_text(label, "Hello LVGL!");
+        // hello world
+        {
+            lv_obj_t * screen = lv_screen_active();
+            lv_obj_set_style_bg_color(screen, lv_color_hex(0x003a57), 0);
+            lv_obj_set_style_text_color(screen, lv_color_hex(0xffffff), 0);
+            lv_obj_t * label = lv_label_create(screen);
+            lv_obj_set_align(label, LV_ALIGN_CENTER);
+            lv_label_set_text(label, "Welcome to SALT TAB by Code Hive Tx, LLC");
+        }
 
 
         /* Make LVGL periodically execute its tasks */
