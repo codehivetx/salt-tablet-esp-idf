@@ -114,4 +114,33 @@ menu "Example Configuration"
             help
                 Height of LVGL buffer. The width of the buffer is the same as that of the LCD.
     endmenu
+
+    menu "RS485"
+        config EXAMPLE_UART_TXD
+            int "UART TX GPIO"
+            default 16
+            help
+                ESP32-S3 GPIO used as UART TX, connected to the RS485 transceiver RS485_RXD input.
+
+        config EXAMPLE_UART_RXD
+            int "UART RX GPIO"
+            default 15
+            help
+                ESP32-S3 GPIO used as UART RX, connected to the RS485 transceiver RS485_TXD output.
+
+        config EXAMPLE_UART_PORT_NUM
+            int "UART port number"
+            default 1
+            range 0 2
+            help
+                UART0 is used by the USB/serial console, so use 1 or 2 for RS485.
+
+        config EXAMPLE_UART_BAUD_RATE
+            int "UART baud rate"
+            default 115200
+
+        config EXAMPLE_TASK_STACK_SIZE
+            int "UART echo task stack size (bytes)"
+            default 2048
+    endmenu
 endmenu

@@ -2,6 +2,7 @@ idf_component_register(
     SRCS
         "main.c"
         "my_sleep.cpp"
+        "salt_485.cpp"
         "salt_tab_main.cpp"
         "../components/waveshare_rgb_lcd_port.c"
     INCLUDE_DIRS
