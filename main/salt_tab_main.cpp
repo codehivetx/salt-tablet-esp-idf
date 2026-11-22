@@ -1,18 +1,16 @@
 #include "salt_tab_main.hpp"
 #include "lv_demos.h"
-#include "my_sleep.hpp"
 #include "esp_log.h"
 
 static const char *TAG = "salt_tab";
-static bool salt_running = true;
 
 /** callback for the label */
 extern "C" void my_clicky_event(lv_event_t *e)
 {
-    ESP_LOGI(TAG, "Clicky on the label");
     lv_event_code_t code = lv_event_get_code(e);
     lv_obj_t * btn = lv_event_get_target_obj(e);
     if(code == LV_EVENT_CLICKED) {
+        ESP_LOGI(TAG, "Clicky on the label");
         static uint8_t cnt = 0;
         cnt++;
         /*Get the first child of the button which is the label and change its text*/
@@ -37,22 +35,9 @@ void salt_tab_setup(void)
     lv_obj_center(label);
 }
 
-/** All set, just go */
-void salt_tab_run(void)
-{
-    /* Make LVGL periodically execute its tasks */
-    while (salt_running)
-    {
-        /* Provide updates to currently-displayed Widgets here. */
-       lv_timer_handler();
-
-        my_sleep(5); /*Wait 5 milliseconds before processing LVGL timer again*/
-    }
-}
-
 /** main entrypoint from main.c */
 void salt_tab_main(void)
 {
     salt_tab_setup();
-    salt_tab_run();
 }
+

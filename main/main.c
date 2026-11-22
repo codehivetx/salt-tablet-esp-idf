@@ -55,7 +55,6 @@ void app_main(void)
     ESP_LOGI(TAG, "Starting Salt Tab main");
     if (esp_lv_adapter_lock(-1) == ESP_OK) {
         salt_tab_main();
-        // doesn't normally exit?
         esp_lv_adapter_unlock();
     }
 }

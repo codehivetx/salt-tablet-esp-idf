@@ -28,6 +28,7 @@ Plain `cmake --build build` fails unless that environment is active; the existin
 - Define a short log tag in each `.c` / `.cpp` file that logs: `static const char *TAG = "salt_tab";`. Do not use `__FILE__` for `ESP_LOGx` tags; it expands to a build-path-dependent full filename and clutters logs.
 - Use `ESP_ERROR_CHECK` for ESP-IDF init calls, and keep LVGL API access under `esp_lv_adapter_lock()` / `esp_lv_adapter_unlock()`.
 - Use LVGL 9 APIs (`lv_button_create`, `lv_obj_align`, `LV_ALIGN_BOTTOM_RIGHT`). `LV_ALIGN_OUT_*` values are only valid with `lv_obj_align_to()`, not `lv_obj_set_align()`.
+- `esp_lv_adapter_start()` runs `lv_timer_handler()` in its own worker task (12 KB stack here). Do not call `lv_timer_handler()` from the small `main` task; create UI under the adapter lock, unlock, and let `app_main` return.
 - Do not commit changes unless explicitly asked.
 
 ## Review guidance
