@@ -1,8 +1,12 @@
 #include "salt_tab_main.hpp"
 #include "lv_demos.h"
 #include "esp_log.h"
+#include "esp_lv_adapter.h"
+#include "salt_485.hpp"
 
 static const char *TAG = "salt_tab";
+
+lv_obj_t *targForUpdate = nullptr;
 
 /** callback for the label */
 extern "C" void my_clicky_event(lv_event_t *e)
@@ -15,12 +19,22 @@ extern "C" void my_clicky_event(lv_event_t *e)
         /*Get the first child of the button which is the label and change its text*/
         lv_obj_t * label = lv_obj_get_child(btn, 0);
 
+        salt_485_send("Clicked\r\n", -1);
+
         if (cnt < 20) {
             cnt++;
             lv_label_set_text_fmt(label, "Button-click-me: %d", cnt);
         } else {
             lv_label_set_text_fmt(label, "That's enough: %d", cnt);
         }
+    }
+}
+
+extern "C" void uart_recv(const char *msg, int len) {
+    (void)len;
+    if (targForUpdate != nullptr && esp_lv_adapter_lock(-1) == ESP_OK) {
+        lv_label_set_text_fmt(targForUpdate, "Got: %s", msg);
+        esp_lv_adapter_unlock();
     }
 }
 
@@ -36,6 +50,7 @@ void salt_tab_setup(void)
     lv_obj_set_size(btn, 300, 50);                          /*Set its size*/
     lv_obj_add_event_cb(btn, my_clicky_event, LV_EVENT_ALL, NULL);           /*Assign a callback to the button*/
     lv_obj_t * label = lv_label_create(btn);          /*Add a label to the button*/
+    targForUpdate = label;
     lv_label_set_text(label, "Button-click me");                     /*Set the labels text*/
     lv_obj_center(label);
 }
@@ -44,5 +59,6 @@ void salt_tab_setup(void)
 void salt_tab_main(void)
 {
     salt_tab_setup();
+    salt_485_main(&uart_recv);
 }
 

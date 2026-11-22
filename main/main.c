@@ -10,7 +10,6 @@
 #include "lv_demos.h"
 #include "waveshare_rgb_lcd_port.h"
 #include "salt_tab_main.hpp"
-#include "salt_485.hpp"
 
 static const char *TAG = "salt_tab";
 
@@ -58,5 +57,4 @@ void app_main(void)
         salt_tab_main();
         esp_lv_adapter_unlock();
     }
-    salt_485_main();
 }

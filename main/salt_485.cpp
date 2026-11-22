@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "driver/gpio.h"
 #include "driver/uart.h"
@@ -22,6 +23,8 @@
 #define BUF_SIZE (1024)
 
 static const char *TAG = "salt_485";
+
+static salt_485_recv_t CALLBACK = nullptr;
 
 extern "C" {
 static void echo_task(void *arg)
@@ -56,16 +59,30 @@ static void echo_task(void *arg)
     while (1) {
         int len = uart_read_bytes(ECHO_UART_PORT_NUM, data, BUF_SIZE - 1, 20 / portTICK_PERIOD_MS);
         if (len > 0) {
-            uart_write_bytes(ECHO_UART_PORT_NUM, (const char *)data, len);
             data[len] = '\0';
             ESP_LOGI(TAG, "Recv str: %s", (char *)data);
+            if (CALLBACK != nullptr) {
+                CALLBACK((const char *)data, len);
+            }
+            data[0]++;
+            uart_write_bytes(ECHO_UART_PORT_NUM, (const char *)data, len);
         }
     }
 }
+
+void salt_485_send(const char *msg, int len) {
+    if (len < 0) {
+        len = ::strlen(msg);
+    }
+    ESP_LOGI(TAG, "Send str: %.*s", len, msg);
+    uart_write_bytes(ECHO_UART_PORT_NUM, msg, len);
 }
 
-void salt_485_main(void)
+}
+
+void salt_485_main(salt_485_recv_t cb)
 {
+    CALLBACK = cb;
     ESP_LOGI(TAG, "Creating UART echo task");
     BaseType_t ret = xTaskCreate(echo_task, "uart_echo_task", ECHO_TASK_STACK_SIZE, NULL, 10, NULL);
     if (ret != pdPASS) {
