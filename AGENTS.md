@@ -1,3 +1,8 @@
+<!--
+  SPDX-FileCopyrightText: © 2026 Code Hive Tx, LLC
+  SPDX-License-Identifier: Apache-2.0
+-->
+
 # AGENTS.md
 
 ## Project
@@ -30,6 +35,10 @@ Plain `cmake --build build` fails unless that environment is active; the existin
 - Use LVGL 9 APIs (`lv_button_create`, `lv_obj_align`, `LV_ALIGN_BOTTOM_RIGHT`). `LV_ALIGN_OUT_*` values are only valid with `lv_obj_align_to()`, not `lv_obj_set_align()`.
 - `esp_lv_adapter_start()` runs `lv_timer_handler()` in its own worker task (12 KB stack here). Do not call `lv_timer_handler()` from the small `main` task; create UI under the adapter lock, unlock, and let `app_main` return.
 - Do not commit changes unless explicitly asked.
+
+## Subprojects
+
+- `melh-protocol/` is a standalone C++ CMake project, independent of the ESP-IDF build. Follow [`melh-protocol/AGENTS.md`](melh-protocol/AGENTS.md) when working in that directory.
 
 ## Review guidance
 
