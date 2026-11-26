@@ -7,6 +7,8 @@ This is a Salt Tablet.
 
 It will be a hardware device that becomes a TTY.
 
+See [melħ-protocol](./melh-protocol/README.md) for the protocol used on top of modbus.
+
 Work in progress.
 
 - made for [ESP-IDF](https://docs.waveshare.com/ESP32-ESP-IDF-Tutorials) v5.x

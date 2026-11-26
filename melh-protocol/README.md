@@ -5,8 +5,11 @@
 
 # melħ-protocol
 
-A [modbus](https://modbus.org)-based layer providing reliable stream transit and application services.
+A [modbus](https://modbus.org)-based layer providing reliable stream transit and application services.  C++.
 
+## Docs
+
+See [MELĦ-PROTOCOL.md](./doc/MELĦ-PROTOCOL.md) for docs
 
 ## Dependencies
 
