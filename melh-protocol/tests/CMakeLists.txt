@@ -1,6 +1,10 @@
 # SPDX-FileCopyrightText: © 2026 Code Hive Tx, LLC
 # SPDX-License-Identifier: Apache-2.0
 
+include(GoogleTest)
+
+find_package(GTest REQUIRED)
+
 add_executable(melh-common-unit-tests
     unit/common_test.cpp
 )
@@ -29,3 +33,9 @@ target_link_libraries(melh-threaded-test
         Threads::Threads
 )
 add_test(NAME melh.threaded COMMAND melh-threaded-test)
+
+foreach(target IN ITEMS melh-common-unit-tests melh-client-unit-tests melh-server-unit-tests )
+    target_link_libraries(${target} PRIVATE GTest::gtest_main)
+endforeach()
+
+# gtest_discover_tests(hello_test)

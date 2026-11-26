@@ -10,8 +10,18 @@ A [modbus](https://modbus.org)-based layer providing reliable stream transit and
 
 ## Dependencies
 
+- On the client (device) side, [esp-modbus](https://github.com/espressif/esp-modbus) - see parent directory
+
 - On the server (host) side, we are using [libmodbus](https://libmodbus.org)
-- On the client (device) side, [esp-modbus](https://github.com/espressif/esp-modbus)
+
+- for tests, we use [gtest](https://google.github.io/googletest/)
+
+### Homebrew (mac)
+
+```sh
+brew install libmodbus googletest
+```
+
 
 ## Build
 
