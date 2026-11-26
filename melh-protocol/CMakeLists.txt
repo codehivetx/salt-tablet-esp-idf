@@ -14,6 +14,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(Threads REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBMODBUS REQUIRED IMPORTED_TARGET libmodbus>=3.2.0)
+
+message(STATUS "Found libmodbus ${LIBMODBUS_VERSION}")
 
 include(CTest)
 

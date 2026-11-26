@@ -25,5 +25,13 @@ foreach(target IN ITEMS melh_common melh_client melh_server)
     target_link_libraries(${target} PUBLIC Threads::Threads)
 endforeach()
 
-target_link_libraries(melh_client PUBLIC melh::common)
-target_link_libraries(melh_server PUBLIC melh::common)
+target_link_libraries(melh_client
+    PUBLIC
+        melh::common
+        PkgConfig::LIBMODBUS
+)
+target_link_libraries(melh_server
+    PUBLIC
+        melh::common
+        PkgConfig::LIBMODBUS
+)

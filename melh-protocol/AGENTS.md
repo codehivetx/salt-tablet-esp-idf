@@ -34,6 +34,7 @@ The checked-in `.cpp`/`.hpp` files are comment-only placeholders. Configure succ
 ## CMake conventions
 
 - C++17 is required; keep `CMAKE_CXX_STANDARD` and target compile features consistent.
+- libmodbus is discovered through PkgConfig (`PkgConfig::LIBMODBUS`, minimum 3.2.0); link the imported target instead of raw `${LIBMODBUS_*}` variables.
 - Libraries are `melh_common`, `melh_client`, `melh_server`, with aliases `melh::common`, `melh::client`, `melh::server`. Prefer the aliases when linking.
 - `melh_client` and `melh_server` link `melh::common` publicly; the threaded test links both `melh::client` and `melh::server` plus `Threads::Threads`.
 - Public headers come from `include/` via `PUBLIC` `target_include_directories` using `BUILD_INTERFACE` / `INSTALL_INTERFACE`; do not hardcode machine-specific paths.
