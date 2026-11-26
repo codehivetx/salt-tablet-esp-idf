@@ -5,8 +5,8 @@
 
 #include "melh/common/melh_common.hpp"
 
-#ifndef _MELH_CLIENT
-#define _MELH_CLIENT
+#ifndef MELH_CLIENT_HPP
+#define MELH_CLIENT_HPP
 
 namespace melh {
 namespace client {

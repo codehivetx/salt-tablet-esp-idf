@@ -3,8 +3,8 @@
 
 // Shared declarations for the melh client and server.
 
-#ifndef _MELH_COMMON
-#define _MELH_COMMON
+#ifndef MELH_COMMON_HPP
+#define MELH_COMMON_HPP
 
 namespace melh {
 

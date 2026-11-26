@@ -3,10 +3,10 @@
 
 // Public server API for the melh protocol.
 
-#include "melh/common/melh_server.hpp"
+#include "melh/common/melh_common.hpp"
 
-#ifndef _MELH_SERVER
-#define _MELH_SERVER
+#ifndef MELH_SERVER_HPP
+#define MELH_SERVER_HPP
 
 namespace melh {
 namespace server {
@@ -16,4 +16,4 @@ namespace server {
 }
 }
 
-#endif
+#endif // MELH_SERVER_HPP
