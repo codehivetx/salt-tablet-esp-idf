@@ -22,6 +22,16 @@ A [modbus](https://modbus.org)-based layer providing reliable stream transit and
 brew install libmodbus googletest
 ```
 
+### Fedora
+
+```sh
+sudo dnf install pkg-config cmake libmodbus-devel gtest-devel
+```
+
+### Ubuntu
+
+```sh
+sudo apt-get install pkg-config cmake libmodbus-dev libgtest-dev
 
 ## Build
 
