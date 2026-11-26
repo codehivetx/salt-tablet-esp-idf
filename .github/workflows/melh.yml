@@ -13,6 +13,6 @@ jobs:
     - name: dependencies
       run: sudo apt-get -y install pkg-config cmake libmodbus-dev libgtest-dev
     - name: Build CMake
-        uses: threeal/cmake-action@v2.1.0
-        source-dir: melh-protocol
-        build-dir: melh-protocol/build
+      uses: threeal/cmake-action@v2.1.0
+      source-dir: melh-protocol
+      build-dir: melh-protocol/build
