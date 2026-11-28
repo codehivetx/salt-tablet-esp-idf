@@ -1,10 +1,13 @@
 # Salt Tablet (Arduino)
 
 [![ESP-IDF CI](https://github.com/codehivetx/salt-tablet-esp-idf/actions/workflows/esp-idf.yml/badge.svg)](https://github.com/codehivetx/salt-tablet-esp-idf/actions/workflows/esp-idf.yml)
+[![melh protocol](https://github.com/codehivetx/salt-tablet-esp-idf/actions/workflows/melh.yml/badge.svg)](https://github.com/codehivetx/salt-tablet-esp-idf/actions/workflows/melh.yml)
 
 This is a Salt Tablet.
 
 It will be a hardware device that becomes a TTY.
+
+See [melħ-protocol](./melh-protocol/README.md) for the protocol used on top of modbus.
 
 Work in progress.
 
